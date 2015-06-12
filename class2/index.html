@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /* This function reads the contents of the input field named 'theSite' and
+           opens a new browser window with whatever is in that field as the address */
+        function go(){
+            var place = document.getElementById('theSite').value;
+            window.open(place);
+        }
+    </script>
+</head>
+<body>
+
+<!-- This button changes its' text to 'OUCH' when the mouse floats over it
+     and back to 'PRESS ME' again when the mouse exits.  When clicked it opens
+     a dialog box that says 'BOO!' -->
+<button id="theButton"
+        onmouseover="document.getElementById('theButton').innerText = 'OUCH';"
+        onmouseout="document.getElementById('theButton').innerText = 'PRESS ME';"
+        onclick="alert('BOO!!');">PRESS ME</button>
+<br />
+
+<!-- This button changes the address of the current window to 'http://www.duckduckgo.com'
+     when clicked -->
+<button id="theOtherButton"
+        onclick="window.location.href='http://www.duckduckgo.com';">QUACK</button>
+<br />
+
+
+<!-- This input field collects input for the go() function -->
+<input type="text" id="theSite" />
+
+<!-- This button calls or invokes the go() function when clicked -->
+<button id="theOtherOtherButton"
+        onclick="go();">New Window</button>
+<hr />
+
+
+<!-- This section of the page will translate a given Earth weight into equivalent
+     weights on other planets. -->
+Your weight on other planets
+<hr />
+<script>
+    function doWeights(){
+        // Get the weight entered by the user
+        var sourceWeight = document.getElementById('myWeight').value;
+
+        // Calculate weights on other planets and place them into corresponding
+        // elements on the page
+        document.getElementById('mercuryWeight').innerText = .38 * sourceWeight;
+    }
+
+</script>
+
+<!-- This table contains a row for each planet -->
+<label for="myWeight">Your weight:</label>
+<input type="text" id="myWeight" onchange="doWeights();" /><br>
+<table>
+    <tr><td>Mercury</td><td id="mercuryWeight">&nbsp;</td></tr>
+</table>
+</body>
+</html>
+
+<!-- Sun 	27.9
+Mercury 	0.38
+Venus 	0.91
+Earth 	1
+Moon 	0.17
+Mars 	0.38
+Jupiter 	2.54
+Saturn 	1.08
+Uranus 	0.91
+Neptune 	1.19
+Pluto 	0.06 -->
+
+
+
+
+
+
