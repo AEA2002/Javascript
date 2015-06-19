@@ -10,6 +10,34 @@
             var place = document.getElementById('theSite').value;
             window.open(place);
         }
+
+        function addADiv(x){
+            var newDiv = document.createElement("DIV");
+            newDiv.innerHTML = x;
+            document.body.appendChild(newDiv);
+        }
+
+        function clearATable(tableName){
+            var theTable = document.getElementById(tableName);
+            while(theTable.children.length > 0){
+                theTable.removeChild(theTable.children[0]);
+            }
+        }
+
+        function addARow(tableName, planetName, planetWeight){
+            var planetCol = document.createElement("TD");
+            var weightCol = document.createElement("TD");
+            var newRow    = document.createElement("TR");
+
+            newRow.appendChild(planetCol);
+            newRow.appendChild(weightCol);
+
+            planetCol.innerText = planetName;
+            weightCol.innerText = planetWeight;
+
+            var weightTable = document.getElementById(tableName);
+            weightTable.appendChild(newRow);
+        }
     </script>
 </head>
 <body>
@@ -45,12 +73,18 @@ Your weight on other planets
 <hr />
 <script>
     function doWeights(){
+        clearATable("weights");
+        var planetNames = ['Planet X', 'Sun', 'Mercury', 'Venus', 'Earth', 'Moon', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+        var planetGravity = [27.9, .38, .91, 1, .17, .38, 2.54, 1.08, .91, 1.19, .06];
+
         // Get the weight entered by the user
         var sourceWeight = document.getElementById('myWeight').value;
 
         // Calculate weights on other planets and place them into corresponding
         // elements on the page
-        document.getElementById('mercuryWeight').innerText = .38 * sourceWeight;
+        for(i=0; i < planetNames.length; i++){
+            addARow("weights", planetNames[i], sourceWeight * planetGravity[i]);
+        }
     }
 
 </script>
@@ -58,8 +92,7 @@ Your weight on other planets
 <!-- This table contains a row for each planet -->
 <label for="myWeight">Your weight:</label>
 <input type="text" id="myWeight" onchange="doWeights();" /><br>
-<table>
-    <tr><td>Mercury</td><td id="mercuryWeight">&nbsp;</td></tr>
+<table id="weights" border="1">
 </table>
 </body>
 </html>
@@ -74,7 +107,10 @@ Jupiter 	2.54
 Saturn 	1.08
 Uranus 	0.91
 Neptune 	1.19
-Pluto 	0.06 -->
+Pluto 	0.06
+-->
+
+
 
 
 
