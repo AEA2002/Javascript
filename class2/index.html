@@ -72,18 +72,39 @@
 Your weight on other planets
 <hr />
 <script>
+    // This is a planet object
+    function Planet(nameParam, multiplierParam){
+        this.name = nameParam;
+        this.multiplier = multiplierParam;
+        this.computeWeight = function(inputWeight){ return this.multiplier * inputWeight; }
+    };
+
     function doWeights(){
         clearATable("weights");
-        var planetNames = ['Planet X', 'Sun', 'Mercury', 'Venus', 'Earth', 'Moon', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
-        var planetGravity = [27.9, .38, .91, 1, .17, .38, 2.54, 1.08, .91, 1.19, .06];
+        //var planetNames = ['Planet X', 'Sun', 'Mercury', 'Venus', 'Earth', 'Moon', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+        //var planetGravity = [10000, 27.9, .38, .91, 1, .17, .38, 2.54, 1.08, .91, 1.19, .06];
+
+        var planets = [ new Planet("Planet X", 10000),
+                        new Planet("Mercury", 0.38),
+                        new Planet("Venus",   0.91),
+                        new Planet("Earth",   1.00),
+                        new Planet("Moon",    0.17),
+                        new Planet("Mars",    0.38),
+                        new Planet("Jupiter", 2.54),
+                        new Planet("Saturn",  1.08),
+                        new Planet("Uranus",  0.91),
+                        new Planet("Neptune", 1.19),
+                        new Planet("Pluto",   0.06)
+        ];
 
         // Get the weight entered by the user
         var sourceWeight = document.getElementById('myWeight').value;
 
         // Calculate weights on other planets and place them into corresponding
         // elements on the page
-        for(i=0; i < planetNames.length; i++){
-            addARow("weights", planetNames[i], sourceWeight * planetGravity[i]);
+        for(i=0; i < planets.length; i++){
+            // addARow("weights", planetNames[i], sourceWeight * planetGravity[i]);
+            addARow("weights", planets[i].name, planets[i].computeWeight(sourceWeight));
         }
     }
 

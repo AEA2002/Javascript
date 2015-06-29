@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Animate a div</title>
+        <script>
+            function moveIt(){
+                var it = document.getElementById("it");
+
+                // Get the X position of "it".
+                var x = parseInt(it.style.left);
+
+                // if the X position is not a number, make it 0
+                if(isNaN(x)){ x = 0; }
+
+                // Schedule a function to move x by 10px every 100 milliseconds
+                setInterval(
+                    function(){
+                        x = x + 10;
+                        if( x > screen.width ) { x = 0; }
+                        it.style.left = x + "px";
+                    }
+                    , 25
+                );
+
+            }
+        </script>
+    </head>
+    <body>
+    <strong>Slide a div</strong><hr />
+    <div id="it" style="position:absolute; background: red; height: 100px; width: 100px" onclick="moveIt()">I am it</div>
+    </body>
+</html>
