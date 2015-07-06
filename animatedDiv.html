@@ -23,10 +23,109 @@
                 );
 
             }
+
+            function moveAnything(aThing){
+                var it = document.getElementById(aThing);
+
+                // Get the X position of aThing.
+                var x = parseInt(it.style.left);
+
+                // if the X position is not a number, make it 0
+                if(isNaN(x)){ x = 0; }
+
+                // Schedule a function to move x by 10px every 100 milliseconds
+                setInterval(
+                    function(){
+                        x = x + 10;
+                        if( x > screen.width ) { x = 0; }
+                        it.style.left = x + "px";
+                    }
+                    , 25
+                );
+            }
+
+            function contractObject(thing1){
+                var h = parseInt(thing1.style.height);
+                var w = parseInt(thing1.style.width);
+
+                if(isNaN(h)){ h=1; }
+                if(isNaN(w)){ w=1; }
+
+                thing1.style.height = (h / 2) + "px";
+                thing1.style.width  = (w / 2) + "px";
+            }
+
+
+            function expandObject(thing1){
+                var h = parseInt(thing1.style.height);
+                var w = parseInt(thing1.style.width);
+
+                if(isNaN(h)){ h=1; }
+                if(isNaN(w)){ w=1; }
+
+                thing1.style.height = (h * 2) + "px";
+                thing1.style.width  = (w * 2) + "px";
+
+            }
+
+            function makeNumber(input, dflt){
+                var tmp = parseInt(input);
+
+                if(isNaN(tmp)){
+                    return dflt;
+                }else{
+                    return tmp;
+                }
+            }
+
+            increment   = 100;
+
+            function runAway(thing1){
+                var thingLeft   = makeNumber(thing1.style.left,  0);
+                var thingWidth  = makeNumber(thing1.style.width, 0);
+                var thingRight  = thingLeft + thingWidth;
+                var screenLeft  = 0;
+                var screenRight = screen.width;
+                var target      = 0;
+
+                if (    ((thingRight + increment) > screenRight)
+                     || ((thingLeft + increment ) < screenLeft ) ){
+                    increment = (increment * -1);
+                }
+
+                thing1.style.left = thingLeft + increment + "px";
+
+
+            }
         </script>
     </head>
     <body>
     <strong>Slide a div</strong><hr />
-    <div id="it" style="position:absolute; background: red; height: 100px; width: 100px" onclick="moveIt()">I am it</div>
+
+    <div id="it" style="position:absolute; background: red; height: 100px; width: 100px; left: 0px; top: 200px;"
+         onclick="moveAnything('it')"
+         onmouseover="expandObject(this)"
+         onmouseout="contractObject(this)"
+            >I am it</div>
+
+    <div id="that"
+         style="position:absolute; background: blue; height: 100px; width: 100px; left: 0px; top: 0px;"
+         onclick="moveAnything('that')"
+         onmouseover="runAway(this)"
+            >I am that</div>
+
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
