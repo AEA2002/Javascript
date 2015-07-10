@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <!-- The slick carousel needs some css files that were downloaded when we downloaded slick -->
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+
+    <!-- Our stylesheet -->
+    <link rel="stylesheet" type="text/css" href="photos.css"/>
+
+    <title>Pictures</title>
+
+    <!-- We include our Javascript functions here -->
+    <script src="pictures.js"></script>
+
+</head>
+<body>
+
+<!-- This is the title of the page -->
+<div class="pageTitle">Library of Congress Photos Archive</div>
+
+<!-- The search form -->
+<div class="searchForm">
+    <input type="text" id="term" />
+    <button onclick="doSearch(document.getElementById('term').value);">SEARCH</button>
+</div>
+
+<!-- This div will contain the photos we get from Library of Congress -->
+<div id="photos" class="photos"></div>
+
+<!-- Here  we include the javascript containing jquery and slick for our carousel -->
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
+
+
+</body>
+</html>

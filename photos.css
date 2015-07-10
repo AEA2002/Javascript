@@ -1,0 +1,36 @@
+body{
+    background: #336699;
+    padding: 0px;
+}
+
+.pageTitle{
+    color: #fffff0;
+    font-size: 16pt;
+    font-weight: bold;
+    border-bottom: 3px solid #fffff0;
+    margin-bottom: 1em;
+}
+
+.searchForm{
+    width: 1100px;
+    margin: auto;
+    padding: 2em;
+}
+
+.caption{
+    color: #fffff0;
+    font-size: small;
+    text-align: center;
+}
+
+.photos{
+    width: 1100px;
+    height: 700px;
+    border: 3px solid #fffff0;
+    margin: auto;
+}
+
+.image{
+    align: center;
+    margin: auto;
+}
