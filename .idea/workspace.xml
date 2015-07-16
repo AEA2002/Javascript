@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="facac063-6b12-4c28-9664-51df745d56fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/photos.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="facac063-6b12-4c28-9664-51df745d56fa" name="Default" comment="" />
     <ignored path="Javascript.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
