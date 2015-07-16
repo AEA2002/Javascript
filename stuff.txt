@@ -1,0 +1,47 @@
+Events
+
+Attach event listeners
+* HTML:        onclick="function()"
+* Traditional: thing.onclick=function;
+* Event listeners: thing.addEventListener('click', function, t/f {capture});
+
+The event object (e)
+
+All events have target, type, cancelable properties and preventDefault(), stopPropagation() methods
+
+target is important because you can attach an event listener to the parent element and inspect the event's target.
+
+Page level events
+* load
+* unload
+* resize
+* scroll
+* beforeunload
+
+Mouse events
+* click
+* dblclick
+* mousedown
+* mouseup
+* mouseover
+* mouseout
+* mousemove
+
+Position:
+screen, page, client
+
+Keyboard events:
+* input
+* keydown
+* keypress
+* keyup
+String.fromCharCode(event.keycode)
+
+Form events:
+* submit
+* change
+* input
+
+
+"http://assets.nydailynews.com/polopoly_fs/1.1229854!/img/httpImage/image.jpg_gen/derivatives/landscape_635/donald-trump.jpg"
+

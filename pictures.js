@@ -99,3 +99,39 @@ function processResponse(data){
                          adaptiveHeight: true,
                        });
 }
+
+window.addEventListener(
+    "load",
+    function(){
+        term = document.getElementById("term");
+        term.addEventListener(
+            "keypress",
+            function(e){
+                if(e.keyCode === 13){
+                    doSearch(term.value);
+                }
+            },
+            false
+        );
+    },
+    false
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
