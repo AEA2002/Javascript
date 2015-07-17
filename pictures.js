@@ -53,7 +53,15 @@ function processResponse(data){
     // tell the user we have nothing for them and leave the function.
     if(data.search.hits < 1){
         outputDiv.innerText = "No results found";
+        agent.play('Decline');
+        agent.speak("I couldn't find any results for you.");
+        agent.play('Alert');
         return;
+    }else{
+        agent.moveTo(75, (window.innerHeight / 2));
+        agent.speak("I found " + data.search.hits + " pictures for you!");
+        agent.play('GestureLeft');
+        agent.play('Congratulate_2');
     }
 
     // If we got here then the number of hits is > 0 so if there are already images in the carousel
@@ -135,6 +143,9 @@ function enterKeyHandler(e){
     }
 }
 
+function moveAgentToInput(theInput){
+    agent.moveTo(75, theInput.offsetTop);
+}
 
 // Add a function to the page that will be called when the page finishes loading.
 window.addEventListener("load",
@@ -145,10 +156,18 @@ window.addEventListener("load",
             .getElementById("topTerm")
             .addEventListener("keypress", enterKeyHandler);
 
+        document
+            .getElementById("topTerm")
+            .addEventListener("focus",    function(e) {moveAgentToInput(e.target); } );
+
         // Attach an event listener to the bottom term input box
         document
             .getElementById('bottomTerm')
             .addEventListener('keypress', enterKeyHandler);
+
+        document
+            .getElementById('bottomTerm')
+            .addEventListener("focus",    function(e) {moveAgentToInput(e.target); } );
 
         // Load and show Clippy
         loadAgent();
