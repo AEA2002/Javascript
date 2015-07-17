@@ -1,3 +1,16 @@
+agent = null;
+
+function loadAgent(){
+	if(agent){
+		agent.stop();
+		agent.hide();
+	}
+
+	clippy.load('Merlin', function(agent){
+		window.agent = agent;
+		agent.show();
+	});
+}
 
 /*
     This function will create a new <script> element, set the src of it to the Library of Congress
@@ -100,19 +113,32 @@ function processResponse(data){
                        });
 }
 
+window.addEventListener("beforeunload", function (e) {
+  var confirmationMessage = "\\o/";
+
+  e.returnValue = confirmationMessage;     // Gecko and Trident
+  return confirmationMessage;              // Gecko and WebKit
+});
+
+function enterKeyHandler(e){
+    if(e.keyCode === 13){
+        doSearch(e.target.value);
+    }
+}
+
 window.addEventListener(
     "load",
     function(){
-        term = document.getElementById("term");
+        term = document.getElementById("topTerm");
         term.addEventListener(
             "keypress",
-            function(e){
-                if(e.keyCode === 13){
-                    doSearch(term.value);
-                }
-            },
+            enterKeyHandler,
             false
         );
+
+        document
+            .getElementById('bottomTerm')
+            .addEventListener('keypress', enterKeyHandler);
     },
     false
 );
