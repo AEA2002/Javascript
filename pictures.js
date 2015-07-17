@@ -1,5 +1,7 @@
+// We need a global variable for Clippy
 agent = null;
 
+// Stop an active clippy if there is one and load a new one.
 function loadAgent(){
 	if(agent){
 		agent.stop();
@@ -11,6 +13,7 @@ function loadAgent(){
 		agent.show();
 	});
 }
+
 
 /*
     This function will create a new <script> element, set the src of it to the Library of Congress
@@ -33,7 +36,6 @@ function doSearch(term){
     // Attach the <script> we created to the page that's loaded in the browser causing it to do some work for us.
     document.body.appendChild(searchRequest);
 }
-
 
 
 /*
@@ -113,34 +115,44 @@ function processResponse(data){
                        });
 }
 
-window.addEventListener("beforeunload", function (e) {
-  var confirmationMessage = "\\o/";
 
-  e.returnValue = confirmationMessage;     // Gecko and Trident
-  return confirmationMessage;              // Gecko and WebKit
-});
+// This function will ask the user to confirm before allowing the page to reload
+window.addEventListener("beforeunload",
+    function (e) {
+        var confirmationMessage = "\\o/";
+        e.returnValue = confirmationMessage;
+        return confirmationMessage;
+    }
+);
 
+
+// This key handler will run a search using the value of the
+// object that triggered the event as the search term when
+// the enter key is pressed.
 function enterKeyHandler(e){
     if(e.keyCode === 13){
         doSearch(e.target.value);
     }
 }
 
-window.addEventListener(
-    "load",
-    function(){
-        term = document.getElementById("topTerm");
-        term.addEventListener(
-            "keypress",
-            enterKeyHandler,
-            false
-        );
 
+// Add a function to the page that will be called when the page finishes loading.
+window.addEventListener("load",
+    function(){
+
+        // Attach an event listener to the top term input box
+        document
+            .getElementById("topTerm")
+            .addEventListener("keypress", enterKeyHandler);
+
+        // Attach an event listener to the bottom term input box
         document
             .getElementById('bottomTerm')
             .addEventListener('keypress', enterKeyHandler);
-    },
-    false
+
+        // Load and show Clippy
+        loadAgent();
+    }
 );
 
 
